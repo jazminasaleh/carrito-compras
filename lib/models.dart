@@ -1,23 +1,30 @@
+import 'package:flutter/material.dart';
+
 class Product {
   final int id;
   final String name;
   final String description;
   final int price;
+  final String img;
 
-  Product(this.id, this.name, this.description, this.price);
+  Product(this.id, this.name, this.description, this.price, this.img);
 }
 
 class CartItem {
   final int id;
   final String name;
   final int price;
+ // final String img;
   int quantity;
+  
 
   CartItem(
       {required this.id,
       required this.name,
       required this.price,
-      required this.quantity});
+      required this.quantity,
+      //required this.img, 
+      });
 
   get totalPrice {
     return quantity * price;
@@ -29,6 +36,7 @@ class CartItem {
       'name': name,
       'price': price,
       'quantity': quantity,
+      //'img': img
     };
   }
 }

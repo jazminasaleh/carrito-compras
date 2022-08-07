@@ -33,7 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ultimo en tecnologia'),
+        backgroundColor: Color.fromARGB(255, 118, 17, 96),
+        title: const Text('Último en tecnología'),
       ),
       body:
       _selectedIndex == 0 ? ProductsList() : MyCart(),
@@ -49,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Color.fromARGB(255, 118, 17, 96),
         onTap: (index) {
           setState(() {
             setState(() {

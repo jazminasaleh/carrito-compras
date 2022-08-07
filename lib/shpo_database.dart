@@ -23,7 +23,7 @@ class ShopDatabase {
   Future<Database> _initDB(String filePath) async {
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
-    return await openDatabase(path, version: 1, onCreate: _onCreateDB);
+    return await openDatabase(path, version: 2, onCreate: _onCreateDB);
   }
 
   FutureOr _onCreateDB(Database db, int version) async {
@@ -32,7 +32,8 @@ class ShopDatabase {
     id INTEGER PRIMARY KEY,
     name TEXT,
     price INTEGER,
-    quantity INTEGER
+    quantity INTEGER,
+    img TEXT
     )
     ''');
   }
@@ -52,7 +53,9 @@ class ShopDatabase {
           id: maps[i]['id'],
           name: maps[i]['name'],
           price: maps[i]['price'],
-          quantity: maps[i]['quantity']);
+          quantity: maps[i]['quantity'],
+          //img: maps[i]['img']
+          );
     });
   }
 

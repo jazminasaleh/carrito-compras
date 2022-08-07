@@ -27,8 +27,10 @@ class MyCart extends StatelessWidget {
                   : ListView.separated(
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
+                           decoration: BoxDecoration(
+                               color: Color.fromRGBO(245, 244, 244, 1),
+                               borderRadius: BorderRadius.circular(15)),
                           child: _CartItem(cartItems[index]),
-                          color: Colors.black45,
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) =>
@@ -59,23 +61,28 @@ class _CartItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: DefaultTextStyle.merge(
-        style: TextStyle(fontSize: 20, color: Colors.white),
+        style: TextStyle(fontSize: 15),
         child: Row(
           children: [
-            Image.asset(
-              'assets/laptop.png',
-              width: 100,
-            ),
+            /*Image.asset(
+              cartItem.img,
+              width: 200,
+            ),*/
+            Image.asset('assets/laptop.png', width: 200,),
+
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(cartItem.name),
-                  Text(cartItem.price.toString()),
+                  Text(cartItem.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                  SizedBox(height: 8,),
+                  Text("\$"+cartItem.price.toString()+" unidad"),
+                  SizedBox(height: 2,),
+                  Text("Cantidad "+cartItem.quantity.toString()),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(cartItem.quantity.toString() + " unidades"),
+                      SizedBox(width: 8,),
                       ElevatedButton(
                         onPressed: () async {
                           cartItem.quantity++;
@@ -83,12 +90,13 @@ class _CartItem extends StatelessWidget {
                           Provider.of<CartNotifier>(context, listen: false)
                           .shouldRefresh();
                         },
-                        child: Text("+"),
+                        child: Text("+", style: TextStyle(color: Colors.black),),
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(10),
-                          primary: Colors.green[300],
+                          primary: Color.fromARGB(255, 241, 193, 125),
                         ),
                       ),
+                      SizedBox(width: 8,),
                       ElevatedButton(
                         onPressed: () async{
                            cartItem.quantity--;
@@ -101,15 +109,17 @@ class _CartItem extends StatelessWidget {
                           Provider.of<CartNotifier>(context, listen: false)
                           .shouldRefresh();
                         },
-                        child: Text("-"),
+                        child: Text("-", style: TextStyle(color: Colors.black),),
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(10),
-                          primary: Colors.green[300],
+                          primary: Color.fromARGB(255, 241, 193, 125),
                         ),
                       ),
                     ],
                   ),
+                  SizedBox(height: 3,),
                   Text("Total: " + cartItem.totalPrice.toString()),
+                  SizedBox(height: 5,),
                   ElevatedButton(
                     onPressed: () async {
                       await ShopDatabase.instance.delete(cartItem.id);
@@ -121,7 +131,7 @@ class _CartItem extends StatelessWidget {
                           .shouldRefresh();
                     },
                     child: Text("Eliminar"),
-                    style: ElevatedButton.styleFrom(primary: Colors.red),
+                    style: ElevatedButton.styleFrom(primary: Colors.red[800]),
                   ),
                 ],
               ),
