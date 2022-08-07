@@ -64,76 +64,79 @@ class _CartItem extends StatelessWidget {
         style: TextStyle(fontSize: 15),
         child: Row(
           children: [
-            /*Image.asset(
-              cartItem.img,
+            Image.asset(
+              'assets/laptopg.jpg',
               width: 200,
-            ),*/
-            Image.asset('assets/laptop.png', width: 200,),
+            ),
+            //Image.asset('assets/laptop.png', width: 200,),
 
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(cartItem.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                  SizedBox(height: 8,),
-                  Text("\$"+cartItem.price.toString()+" unidad"),
-                  SizedBox(height: 2,),
-                  Text("Cantidad "+cartItem.quantity.toString()),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(width: 8,),
-                      ElevatedButton(
-                        onPressed: () async {
-                          cartItem.quantity++;
-                          await ShopDatabase.instance.update(cartItem);
-                          Provider.of<CartNotifier>(context, listen: false)
-                          .shouldRefresh();
-                        },
-                        child: Text("+", style: TextStyle(color: Colors.black),),
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.all(10),
-                          primary: Color.fromARGB(255, 241, 193, 125),
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(cartItem.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                    SizedBox(height: 8,),
+                    Text("\$"+cartItem.price.toString()+" unidad"),
+                    SizedBox(height: 2,),
+                    Text("Cantidad "+cartItem.quantity.toString()),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SizedBox(width: 8,),
+                        ElevatedButton(
+                          onPressed: () async {
+                            cartItem.quantity++;
+                            await ShopDatabase.instance.update(cartItem);
+                            Provider.of<CartNotifier>(context, listen: false)
+                            .shouldRefresh();
+                          },
+                          child: Text("+", style: TextStyle(color: Colors.black),),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(10),
+                            primary: Color.fromARGB(255, 241, 193, 125),
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 8,),
-                      ElevatedButton(
-                        onPressed: () async{
-                           cartItem.quantity--;
-                           if(cartItem.quantity == 0){
-                           await  ShopDatabase.instance.delete(cartItem.id);
-                           } else{
-                               await ShopDatabase.instance.update(cartItem);
-                            }
-                         
-                          Provider.of<CartNotifier>(context, listen: false)
-                          .shouldRefresh();
-                        },
-                        child: Text("-", style: TextStyle(color: Colors.black),),
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.all(10),
-                          primary: Color.fromARGB(255, 241, 193, 125),
+                        SizedBox(width: 8,),
+                        ElevatedButton(
+                          onPressed: () async{
+                             cartItem.quantity--;
+                             if(cartItem.quantity == 0){
+                             await  ShopDatabase.instance.delete(cartItem.id);
+                             } else{
+                                 await ShopDatabase.instance.update(cartItem);
+                              }
+                           
+                            Provider.of<CartNotifier>(context, listen: false)
+                            .shouldRefresh();
+                          },
+                          child: Text("-", style: TextStyle(color: Colors.black),),
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.all(10),
+                            primary: Color.fromARGB(255, 241, 193, 125),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 3,),
-                  Text("Total: " + cartItem.totalPrice.toString()),
-                  SizedBox(height: 5,),
-                  ElevatedButton(
-                    onPressed: () async {
-                      await ShopDatabase.instance.delete(cartItem.id);
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text('Producto eliminado'),
-                        duration: Duration(seconds: 1),
-                      ));
-                      Provider.of<CartNotifier>(context, listen: false)
-                          .shouldRefresh();
-                    },
-                    child: Text("Eliminar"),
-                    style: ElevatedButton.styleFrom(primary: Colors.red[800]),
-                  ),
-                ],
+                      ],
+                    ),
+                    SizedBox(height: 3,),
+                    Text("Total: " + cartItem.totalPrice.toString()),
+                    SizedBox(height: 5,),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await ShopDatabase.instance.delete(cartItem.id);
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Producto eliminado'),
+                          duration: Duration(seconds: 1),
+                        ));
+                        Provider.of<CartNotifier>(context, listen: false)
+                            .shouldRefresh();
+                      },
+                      child: Text("Eliminar"),
+                      style: ElevatedButton.styleFrom(primary: Colors.red[800]),
+                    ),
+                  ],
+                ),
               ),
             )
           ],

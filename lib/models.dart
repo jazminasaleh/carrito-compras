@@ -14,7 +14,6 @@ class CartItem {
   final int id;
   final String name;
   final int price;
- // final String img;
   int quantity;
   
 
@@ -22,8 +21,7 @@ class CartItem {
       {required this.id,
       required this.name,
       required this.price,
-      required this.quantity,
-      //required this.img, 
+      required this.quantity, 
       });
 
   get totalPrice {
@@ -36,7 +34,6 @@ class CartItem {
       'name': name,
       'price': price,
       'quantity': quantity,
-      //'img': img
     };
   }
 }

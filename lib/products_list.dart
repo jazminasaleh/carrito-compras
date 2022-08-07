@@ -8,8 +8,8 @@ class ProductsList extends StatelessWidget {
     Product(2, "Laptop Gammer", "Rendimiento de utima generacion", 3500000, 'assets/laptop2.jpg'),
     Product(3, "Laptop Asus", "El laptop mas caro", 8000000, 'assets/laptop1.png'),
     Product(4, "Laptop samsung", "un laptop muy eficinete", 2000000, 'assets/laptop3.png'),
-    Product(5, "Laptop AMD", "Rendimiento de utima", 4500000, 'assets/laptop4.jpg'),
-    Product(6, "Laptop Acer", "un laptop mas caro", 5000000, 'assets/laptop.png'),
+    Product(5, "Laptop AMD", "intel core i7", 4500000, 'assets/laptop4.jpg'),
+    Product(6, "Laptop Acer", "un laptop mas barato", 2300000, 'assets/laptop.png'),
   ];
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,6 @@ class ProductsList extends StatelessWidget {
         name: product.name, 
         price: product.price, 
         quantity: 1, 
-        //img: product.img
         );
     await ShopDatabase.instance.insert(item);
   }

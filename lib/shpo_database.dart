@@ -54,7 +54,6 @@ class ShopDatabase {
           name: maps[i]['name'],
           price: maps[i]['price'],
           quantity: maps[i]['quantity'],
-          //img: maps[i]['img']
           );
     });
   }
