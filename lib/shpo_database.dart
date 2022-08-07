@@ -37,9 +37,41 @@ class ShopDatabase {
     ''');
   }
 
-   Future<void> insert(CartItem item) async {
+  Future<void> insert(CartItem item) async {
     final db = await instance.database;
     await db.insert(tableCartItems, item.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<List<CartItem>> getAllItems() async {
+    final db = await instance.database;
+    final List<Map<String, dynamic>> maps = await db.query(tableCartItems);
+
+    return List.generate(maps.length, (i) {
+      return CartItem(
+          id: maps[i]['id'],
+          name: maps[i]['name'],
+          price: maps[i]['price'],
+          quantity: maps[i]['quantity']);
+    });
+  }
+
+   Future<int> delete(int id) async {
+    final db = await instance.database;
+    return await db.delete(
+      tableCartItems,
+      where: "id = ?",
+      whereArgs: [id],
+    );
+  }
+
+  Future<int> update(CartItem item) async {
+    final db = await instance.database;
+    return await db.update(
+      tableCartItems,
+      item.toMap(),
+      where: "id=?",
+      whereArgs: [item.id],
+    );
   }
 }

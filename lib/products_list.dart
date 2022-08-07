@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class ProductsList extends StatelessWidget {
   var products = [
-    Product(1, "laptop1", "un laptop muy eficinete", 2000),
-    Product(2, "laptop2", "Este laptop esta en decuento", 1500),
-    Product(3, "laptop3", "un laptop mas caro", 8000),
+    Product(1, "Laptop samsung", "un laptop muy eficinete", 2000),
+    Product(2, "Laptop hp", "Este laptop esta en descuento", 1500),
+    Product(3, "Laptop Asus", "un laptop mas caro", 8000),
   ];
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ProductsList extends StatelessWidget {
           return GestureDetector(
             child: Container(
               child: _ProductItem(products[index]),
-              color: Color.fromARGB(255, 99, 146, 152),
+              color: Color.fromARGB(255, 240, 242, 243),
             ),
             onTap: () async {
               print('hola');
@@ -60,9 +60,10 @@ class _ProductItem extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(product.name),
+              Text(product.name, style: TextStyle(fontWeight: FontWeight.bold),),
+              SizedBox(height: 8,),
               Text(product.description),
-              Text(product.price.toString()),
+              Text("\$"+product.price.toString(), style: TextStyle(fontWeight: FontWeight.w300),), 
             ],
           )
         ],

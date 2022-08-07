@@ -1,6 +1,8 @@
 import 'package:carro_comprasa/my_cart.dart';
+import 'package:carro_comprasa/notifier.dart';
 import 'package:carro_comprasa/products_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,8 +10,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-          body: MyHomePage()),
+          body: 
+          ChangeNotifierProvider(
+            create: (context) => CartNotifier(),
+            child: MyHomePage())),
     );
   }
 }
@@ -27,9 +33,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shop sqlite'),
+        title: const Text('Ultimo en tecnologia'),
       ),
-      body:_selectedIndex == 0 ? ProductsList() : MyCart(),
+      body:
+      _selectedIndex == 0 ? ProductsList() : MyCart(),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
